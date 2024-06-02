@@ -61,7 +61,7 @@ const offerSwiper = new Swiper(".offer-swiper", {
   breakpoints: {
     0: {
       slidesPerView: 1,
-        spaceBetween: 30,
+      spaceBetween: 30,
     },
     // 576: {
     //   slidesPerView: 2,
@@ -101,57 +101,114 @@ sideCategory.forEach((ele) => {
   });
 });
 
-
 //////
 let smNav = document.querySelector(".sm-nav");
-let aside = document.querySelector("aside");
-let sideMainMenu = document.querySelector(".side-main-menu");
 
 /// aside side menu
-smNav.querySelector("#aside-icon").addEventListener("click",(e)=> {
+let aside = document.querySelector("aside");
+smNav.querySelector("#aside-icon").addEventListener("click", (e) => {
   e.preventDefault();
   aside.classList.add("show");
-})
+});
 
-aside.querySelector(".close-icon span").addEventListener("click", ()=> {
+aside.querySelector(".close-icon span").addEventListener("click", () => {
   aside.classList.remove("show");
-})
+});
 
-aside.addEventListener("click", (e)=> {
-  if(e.target == aside) {
-    aside.classList.remove("show")
+aside.addEventListener("click", (e) => {
+  if (e.target == aside) {
+    aside.classList.remove("show");
   }
-})
+});
 
 /// main menu
-smNav.querySelector("#side-main-menu-icon").addEventListener("click",(e)=> {
+let sideMainMenu = document.querySelector(".side-main-menu");
+smNav.querySelector("#side-main-menu-icon").addEventListener("click", (e) => {
   e.preventDefault();
-  console.log("object");
   sideMainMenu.classList.add("show");
-})
+});
 
-sideMainMenu.querySelector(".close-icon span").addEventListener("click", ()=> {
+sideMainMenu.querySelector(".close-icon span").addEventListener("click", () => {
   sideMainMenu.classList.remove("show");
-})
+});
 
-sideMainMenu.addEventListener("click", (e)=> {
-  if(e.target == sideMainMenu) {
-    sideMainMenu.classList.remove("show")
+sideMainMenu.addEventListener("click", (e) => {
+  if (e.target == sideMainMenu) {
+    sideMainMenu.classList.remove("show");
   }
-})
+});
 
-/// main menu dropdown
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
+/// main menu dropdown at side main menu link
+let coll = document.getElementsByClassName("collapsible");
+for (let i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function () {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
-    if (content.style.maxHeight){
+    if (content.style.maxHeight) {
       content.style.maxHeight = null;
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
-    } 
+    }
   });
 }
+
+// cart
+let cartControl = document.querySelector(".cart-control");
+smNav.querySelector("#cart").addEventListener("click",(e)=> {
+  e.preventDefault();
+  cartControl.classList.add("show");
+})
+cartControl.querySelector(".close-icon span").addEventListener("click", () => {
+  cartControl.classList.remove("show");
+});
+cartControl.addEventListener("click", (e) => {
+  if (e.target == cartControl) {
+    cartControl.classList.remove("show");
+  }
+});
+let products = cartControl.querySelector(".cart-control .products");
+let allBuyIconButtons = document.querySelectorAll(".buy-icon");
+let item ;
+let imgSrc ;
+let productTitle ;
+let productPrice ;
+allBuyIconButtons.forEach(btn => {
+  btn.addEventListener("click", (e)=> {
+    e.preventDefault();
+    if(btn.parentElement.parentElement.classList.contains("item")) {
+      item = btn.parentElement.parentElement;
+      productTitle = item.querySelector(".name").textContent;
+    } else if(btn.parentElement.parentElement.parentElement.classList.contains("item")){
+      item = btn.parentElement.parentElement.parentElement;   
+      productTitle = item.querySelector(".product-title").textContent;
+    }
+    imgSrc = item.querySelector("img").getAttribute("src");
+    productPrice = item.querySelector(".price .new").textContent;
+
+    addProduct();
+
+  })
+});
+
+function addProduct () {
+  products.innerHTML += `
+  <div class="product">
+  <div class="image">
+    <img src="${imgSrc}" alt="" />
+  </div>
+  <div class="info">
+    <h4 class="title">${productTitle}</h4>
+    <span class="price">${productPrice}</span>
+    <div class="controls">
+      <span class="plus"><i class="fa-solid fa-plus"></i></span>
+      <span class="count">1</span>
+      <span class="minus"><i class="fa-solid fa-minus"></i></span>
+    </div>
+    <span class="remove-product-icon">
+      <i class="fa-solid fa-trash-can"></i>
+    </span>
+  </div>
+  </div>
+`;
+}
+

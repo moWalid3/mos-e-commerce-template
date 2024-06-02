@@ -118,6 +118,9 @@ footer {
     padding-top: 3rem;
     padding-bottom: 3rem;
     text-align: center;
+    @include media ("lg") {
+      padding-bottom: 4rem;
+    }
     p {
       margin-top: $fs-15;
       margin-bottom: 0;
