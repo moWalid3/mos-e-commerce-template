@@ -1,4 +1,5 @@
 header {
+  background-color: $white;
   .first-row {
     @include media("sm") {
       display: none;
@@ -55,7 +56,6 @@ header {
     padding-top: $fs-25;
     padding-bottom: $fs-25;
     .container {
-      // d-flex justify-content-between align-content-center
       display: flex;
       justify-content: space-between;
       align-content: center;
@@ -141,16 +141,16 @@ header {
         }
         .count {
           position: absolute;
-          top: 0.3rem;
-          right: -0.5rem;
+          top: -.2rem;
+          right: -0.75rem;
           background-color: $primary;
-          width: 0.8rem;
-          height: 0.8rem;
+          width: $fs-22;
+          height: $fs-22;
           text-align: center;
-          line-height: 0.8rem;
+          line-height: $fs-22;
           border-radius: 50%;
           color: white;
-          font-size: $fs-11;
+          font-size: $fs-14;
           transition: $transition;
         }
       }
@@ -277,7 +277,7 @@ header {
       border-top-right-radius: $br-md;
       border-top-left-radius: $br-md;
       a {
-        font-size: $fs-20;
+        font-size: $fs-25;
         color: $title-color-alt;
         position: relative;
         transition: $transition;
@@ -289,16 +289,16 @@ header {
         }
         .count {
           position: absolute;
-          top: 0;
+          top: -0.25rem;
           right: -0.5rem;
           background-color: $primary;
-          width: 0.8rem;
-          height: 0.8rem;
+          width: $fs-20;
+          height: $fs-20;
           text-align: center;
-          line-height: 0.8rem;
+          line-height: $fs-20;
           border-radius: 50%;
           color: white;
-          font-size: $fs-11;
+          font-size: $fs-13;
           transition: $transition;
         }
       }
@@ -468,7 +468,6 @@ header {
     }
   }
   .cart-control {
-    display: none;
     .close-icon {
       display: none;
     }
@@ -536,18 +535,17 @@ header {
                 cursor: pointer;
                 color: $text-color-alt;
                 border-color: rgba($color: $gray, $alpha: 0.4);
-
-                .disable {
+              }
+              .minus {
+                &.disable {
                   pointer-events: none;
                   color: $border-color;
                   border-color: $border-color;
                 }
               }
-              .plus {
-              }
-              .minus {
-              }
               .count {
+                width: 1rem;
+                text-align: center;
               }
             }
             .remove-product-icon {
@@ -562,14 +560,14 @@ header {
         }
       }
       .final-total {
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
         display: flex;
         justify-content: space-between;
         color: $title-color;
         font-weight: $fw-600;
         .total-items {
           span {
-            margin-right: .25rem;
+            margin-right: 0.25rem;
           }
         }
       }
@@ -577,7 +575,7 @@ header {
         width: 100%;
       }
     }
-    @include media("lg") {
+
     display: block;
     position: fixed;
     left: 0;
@@ -621,7 +619,6 @@ header {
     }
     .close-icon {
       @extend %close-icon;
-    }
     }
   }
 }
